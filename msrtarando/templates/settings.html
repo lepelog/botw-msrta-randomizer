@@ -1,0 +1,16 @@
+<html>
+<header><title>MSRTA-Randomizer Settings</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'msrta.css' %}">
+</header>
+<body>
+<form id="settings" action="" method="post">
+<p id="settingstitle">Settings for MSRTA-Randomizer</p>
+{% csrf_token %}
+<ul>
+{{form.as_ul}}
+<li><input type="submit" value="Generate Run"></li>
+</ul>
+</form>
+</body>
+</html>
