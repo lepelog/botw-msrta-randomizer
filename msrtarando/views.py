@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, HttpResponseBadRequest
 import random
 from .chooser import Settings, Chooser
 # Create your views here.
@@ -27,5 +27,7 @@ def run(request):
             error=True
     if error:
         return HttpResponseRedirect('run?seed={}&settings={}'.format(seed,settings.to_setting_str()))
-    else:
-        return HttpResponse('Seed: {}, Settings: {}'.format(seed,settings.to_setting_str()))
+    route=Chooser(seed, settings).get_route()
+    if route==None:
+        return HttpResponseBadRequest('Not enough orbs to finish a run!')
+    return render(request, 'run.html', {'run':route})

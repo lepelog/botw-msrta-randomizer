@@ -1,0 +1,30 @@
+<html>
+<header><title>MSRTA-Randomizer</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'msrta.css' %}">
+</header>
+<body>
+<div class="regions">
+{% for region, goals in run %}
+<div class="goals">
+<p class="region">{{region}}</p>
+{% for goal in goals%}
+<div class="goal">
+{% if goal.orbs == 1 %}
+<p class="goaltrial">
+<a href="https://www.zeldadungeon.net/breath-of-the-wild-interactive-map/?id={{goal.name}} Shrine" target="_blank">{{goal.trial}}</a></p>
+<p class="goalname">{{goal.name}} Shrine</p>
+{% if goal.orbs == 1 and goal.quest %}
+<hr/>
+<p class="goalquest">{{goal.quest}}</p>
+{% endif %}
+{% else %}
+<p class="beast">{{goal.name}}</p>
+{% endif %}
+</div>
+{% endfor %}
+</div>
+{% endfor %}
+</div>
+</body>
+</html>
