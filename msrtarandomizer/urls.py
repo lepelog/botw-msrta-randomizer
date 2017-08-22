@@ -19,5 +19,7 @@ from msrtarando import views as msrtarandoviews
 
 urlpatterns = [
 #    url(r'^admin/', admin.site.urls),
-    url(r'^run$',msrtarandoviews.run)
+    url(r'^run$',msrtarandoviews.run),
+    url(r'^settings$',msrtarandoviews.settings),
+    url(r'^$',msrtarandoviews.index),
 ]

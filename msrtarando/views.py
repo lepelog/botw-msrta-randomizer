@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect, HttpResponseBadRequest
 import random
 from .chooser import Settings, Chooser
+from .forms import SettingsForm
 # Create your views here.
 def run(request):
     settings=request.GET.get('settings',None)
@@ -31,3 +32,20 @@ def run(request):
     if route==None:
         return HttpResponseBadRequest('Not enough orbs to finish a run!')
     return render(request, 'run.html', {'run':route})
+
+def settings(request):
+    if request.method == 'POST':
+        form = SettingsForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            print(cd)
+            #TODO regions
+            settings=Settings(blood_moon=cd['blood_moon'], camera=cd['camera'], gyro=cd['camera'], blessing=cd['blessing'],
+              medoh=cd['medoh'], naboris=cd['naboris'], ruta=cd['ruta'], rudania=cd['rudania'])
+            return HttpResponseRedirect('run?seed={}&settings={}'.format(random.getrandbits(32),settings.to_setting_str()))
+    else:
+        form = SettingsForm()
+    return render(request, 'settings.html', {'form':form})
+
+def index(request):
+    return HttpResponseRedirect('settings')
