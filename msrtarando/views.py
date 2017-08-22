@@ -10,7 +10,7 @@ def run(request):
     error=False
     try:
         seed=int(seed)
-    except NumberFormatException:
+    except ValueError:
         error=True
         seed=random.getrandbits(32)
     if seed<0:
