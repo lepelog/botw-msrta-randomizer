@@ -65,11 +65,20 @@ p {
   font-size: 70px;
 }
 
-#settings {
+#settings, #runlinks {
   max-width: 880px;
   margin: auto;
   padding: 7px;
   background: rgba(0,0,0,0.7);
+}
+
+#runlinks {
+  margin-top: 10px;
+}
+
+#runlinks a {
+    font-family: Hylia Serif;
+    font-size: 35px;
 }
 
 li {
@@ -97,5 +106,11 @@ td {
 }
 
 td.first {
+  min-width: 230px;
   font-weight: bold;
+}
+
+fieldset {
+    border: 2px solid #333;
+    margin: 10px 0;
 }

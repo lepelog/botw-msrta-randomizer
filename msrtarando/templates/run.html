@@ -1,8 +1,8 @@
 <html>
-<header><title>MSRTA-Randomizer</title>
+<head><title>MSRTA-Randomizer</title>
 {% load static %}
 <link rel="stylesheet" href="{% static 'msrta.css' %}">
-</header>
+</head>
 <body>
 <div id="settings"><table>
 <tr>
@@ -26,7 +26,8 @@
 <tr>
 <td class="first">Include Vah Rudania:</td><td class="second">{{rudania}}</td>
 </tr>
-</table>
+</table></div>
+<div id="runlinks">
 <a href="/settings">Generate new Run</a><br/>
 <a href="/run?settings={{setting_str}}">Generate new Run with same settings</a></div>
 <div class="regions">
