@@ -87,3 +87,15 @@ p#settingstitle {
   font-family: Hylia Serif;
   font-size: 50px;
 }
+
+.tos ul li {
+    display: inline;
+}
+
+td {
+  vertical-align: top;
+}
+
+td.first {
+  font-weight: bold;
+}

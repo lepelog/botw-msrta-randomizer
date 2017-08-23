@@ -156,7 +156,20 @@ class Settings:
         self.ruta=ruta
         self.rudania=rudania
     
+    def to_display_dict(self):
+        special=[]
+        if self.blood_moon: special.append('Blood Moon Shrine')
+        if self.gyro: special.append('Apparatus Shrines')
+        if self.blessing: special.append('Blessing Shrines')
+        if self.camera: special.append('Camera Shrines')
+        dbchoices=['no', 'maybe', 'yes']
+        return {'regions': ', '.join(sorted(self.allowed_regions)), 'tos': ', '.join(self.tos), 'special_shrines': ', '.join(special),
+          'medoh': dbchoices[self.medoh], 'naboris': dbchoices[self.naboris], 'ruta': dbchoices[self.ruta], 'rudania': dbchoices[self.rudania]}
+    
     def to_setting_str(self):
+        """
+        Serialization
+        """
         binaryopts = tuple(True if region in self.allowed_regions else False for region in self.all_regions)+(self.blood_moon, self.gyro, self.camera, self.blessing, 'minor' in self.tos, 'modest' in self.tos, 'major' in self.tos)
         base=1
         erg=b''
@@ -175,6 +188,9 @@ class Settings:
        
     @staticmethod    
     def from_setting_str(string):
+        """
+        Deserialization
+        """
         string+='='*((4-len(string)%4)%4)
         settings=Settings()
         decoded=base64.urlsafe_b64decode(string.encode('ascii'))

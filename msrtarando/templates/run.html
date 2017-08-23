@@ -4,6 +4,31 @@
 <link rel="stylesheet" href="{% static 'msrta.css' %}">
 </header>
 <body>
+<div id="settings"><table>
+<tr>
+<td class="first">Selected Regions:</td><td class="second">{{regions}}</td>
+</tr>
+<tr>
+<td class="first">Tests of Strength:</td><td class="second">{{tos}}</td>
+</tr>
+<tr>
+<td class="first">Include Special Shrines:</td><td class="second">{{special_shrines}}</td>
+</tr>
+<tr>
+<td class="first">Include Vah Medoh:</td><td class="second">{{medoh}}</td>
+</tr>
+<tr>
+<td class="first">Include Vah Naboris:</td><td class="second">{{naboris}}</td>
+</tr>
+<tr>
+<td class="first">Include Vah Ruta:</td><td class="second">{{ruta}}</td>
+</tr>
+<tr>
+<td class="first">Include Vah Rudania:</td><td class="second">{{rudania}}</td>
+</tr>
+</table>
+<a href="/settings">Generate new Run</a><br/>
+<a href="/run?settings={{setting_str}}">Generate new Run with same settings</a></div>
 <div class="regions">
 {% for region, goals in run %}
 <div class="goals">
