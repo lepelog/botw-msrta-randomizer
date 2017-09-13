@@ -1,7 +1,9 @@
 <html>
 <head><title>MSRTA-Randomizer</title>
 {% load static %}
-<link rel="stylesheet" href="{% static 'msrta.css' %}">
+<link rel="stylesheet" href="{% static 'msrta.css' %}"/>
+<script type="text/javascript" src="{% static 'jquery-3.2.1.slim.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'msrta.js' %}"></script>
 </head>
 <body>
 <div id="settings"><table>
@@ -35,7 +37,7 @@
 <div class="goals">
 <p class="region">{{region}}</p>
 {% for goal in goals%}
-<div class="goal">
+<div class="goal color-black" id="{% if goal.orbs == 1 %}shrine_{% else %}beast_{% endif %}{{goal.id}}">
 {% if goal.orbs == 1 %}
 <p class="goaltrial">
 <a href="https://www.zeldadungeon.net/breath-of-the-wild-interactive-map/?id={{goal.name}} Shrine" target="_blank">{{goal.trial}}</a></p>
