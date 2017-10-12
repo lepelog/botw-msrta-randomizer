@@ -301,8 +301,8 @@ Shrine(
     tos=None,
     beast=None,
     region='Dueling Peaks',
-    lat=-188,
-    long=824,
+    lat=-1919,
+    long=1666,
 ),
 Shrine(
     id=20,

@@ -4,7 +4,6 @@ from django.http.response import HttpResponseRedirect, HttpResponseBadRequest
 import random
 from .chooser import Settings, Chooser
 from .forms import SettingsForm
-from .locations import hidden_shrines, open_shrines
 
 REGION_CONVERTION_FIELD=['akkala', 'central', 'dueling_peaks', 'eldin', 'faron', 'gerudo', 'hateno', 'hebra', 'lake', 'lanayru', 'ridgeland', 'tabantha', 'wasteland', 'woodland']
 REGION_CONVERTION_SETTINGS=['Akkala', 'Central', 'Dueling Peaks', 'Eldin', 'Faron', 'Gerudo', 'Hateno', 'Hebra', 'Lake', 'Lanayru', 'Ridgeland', 'Tabantha', 'Wasteland', 'Woodland']
