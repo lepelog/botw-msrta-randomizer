@@ -1,9 +1,8 @@
 <html>
 <head><title>MSRTA-Randomizer</title>
 {% load static %}
-<link rel="stylesheet" href="{% static 'msrta.css' %}"/>
+
 <script type="text/javascript" src="{% static 'jquery-3.2.1.slim.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'msrta.js' %}"></script>
 <link rel="stylesheet" href="{% static 'leaflet.css' %}"/>
 <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
 <style>
@@ -16,6 +15,10 @@
 	  width: 100%;
 	  display: inline-block;
 	}
+	
+	body {
+	  margin: 0;
+    }
 </style>
 </head>
 <body>
@@ -44,37 +47,50 @@
 	    popupAnchor:  [0, -13] // point from which the popup should open relative to the iconAnchor
 	});
 
-	var medohIcon = L.icon({
-	    iconUrl: '{% static 'BotW_Divine_Beast_Vah_Medoh_Icon.png' %}',
+    {# Divine Beast Symbols & Marker#}
+    {% if medoh_chosen %}
+		var medohIcon = L.icon({
+		    iconUrl: '{% static 'BotW_Divine_Beast_Vah_Medoh_Icon.png' %}',
+		
+		    iconSize:     [80, 80],
+		    iconAnchor:   [40, 40], // point of the icon which will correspond to marker's location
+		    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
+		});
+		L.marker([1864, -3614], {icon : medohIcon, zIndexOffset: -1000}).addTo(map).bindPopup('<b>Vah Medoh</b>');
+	{% endif %}
 	
-	    iconSize:     [80, 80],
-	    iconAnchor:   [40, 40], // point of the icon which will correspond to marker's location
-	    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
-	});
+	{% if naboris_chosen %}
+		var naborisIcon = L.icon({
+		    iconUrl: '{% static 'BotW_Divine_Beast_Vah_Naboris_Icon.png' %}',
+		
+		    iconSize:     [80, 80],
+		    iconAnchor:   [40, 40], // point of the icon which will correspond to marker's location
+		    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
+		});
+		L.marker([-2636, -2110], {icon : naborisIcon, zIndexOffset: -1000}).addTo(map).bindPopup('<b>Vah Naboris</b>');
+	{% endif %}
 	
-	var naborisIcon = L.icon({
-	    iconUrl: '{% static 'BotW_Divine_Beast_Vah_Naboris_Icon.png' %}',
+	{% if ruta_chosen %}
+		var rutaIcon = L.icon({
+		    iconUrl: '{% static 'BotW_Divine_Beast_Vah_Ruta_Icon.png' %}',
+		
+		    iconSize:     [80, 80],
+		    iconAnchor:   [40, 40], // point of the icon which will correspond to marker's location
+		    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
+		});
+		L.marker([-242, 2985], {icon : rutaIcon, zIndexOffset: -1000}).addTo(map).bindPopup('<b>Vah Ruta</b>');
+	{% endif %}
 	
-	    iconSize:     [80, 80],
-	    iconAnchor:   [40, 40], // point of the icon which will correspond to marker's location
-	    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
-	});
-	
-	var rutaIcon = L.icon({
-	    iconUrl: '{% static 'BotW_Divine_Beast_Vah_Ruta_Icon.png' %}',
-	
-	    iconSize:     [80, 80],
-	    iconAnchor:   [40, 40], // point of the icon which will correspond to marker's location
-	    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
-	});
-	
-	var rudaniaIcon = L.icon({
-	    iconUrl: '{% static 'BotW_Divine_Beast_Vah_Rudania_Icon.png' %}',
-	
-	    iconSize:     [80, 80],
-	    iconAnchor:   [40, 40], // point of the icon which will correspond to marker's location
-	    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
-	});
+	{% if rudania_chosen %}
+		var rudaniaIcon = L.icon({
+		    iconUrl: '{% static 'BotW_Divine_Beast_Vah_Rudania_Icon.png' %}',
+		
+		    iconSize:     [80, 80],
+		    iconAnchor:   [40, 40], // point of the icon which will correspond to marker's location
+		    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
+		});
+		L.marker([2491, 2538], {icon : rudaniaIcon, zIndexOffset: -1000}).addTo(map).bindPopup('<b>Vah Rudania</b>');
+	{% endif %}
 	
 	var masterSwordIcon = L.icon({
 	    iconUrl: '{% static 'BotW_Weapon_Icon.png' %}',
@@ -83,23 +99,22 @@
 	    iconAnchor:   [20, 20], // point of the icon which will correspond to marker's location
 	    popupAnchor:  [0, -10] // point from which the popup should open relative to the iconAnchor
 	});
+	L.marker([2132, 428], {icon : masterSwordIcon, zIndexOffset: -1000}).addTo(map).bindPopup('<b>Master Sword!</b>');
 	
-	function onMapClick(e) {
-	    alert("You clicked the map at " + e.latlng);
-	}
+//	function onMapClick(e) {
+//	    alert("You clicked the map at " + e.latlng);
+//	}
+//	
+//	map.on('click', onMapClick);
 	
-	map.on('click', onMapClick);
-	
-	L.marker([1864, -3614], {icon : medohIcon}).addTo(map).bindPopup('medoh');
-	L.marker([-2636, -2110], {icon : naborisIcon}).addTo(map).bindPopup('naboris');
-	L.marker([-242, 2985], {icon : rutaIcon}).addTo(map).bindPopup('ruta');
-	L.marker([2491, 2538], {icon : rudaniaIcon}).addTo(map).bindPopup('rudania');
 	{# add shrines #}
 	{% for location in locations %}
-	  L.marker([{{ location.1 }} * -1, {{ location.0 }}], {icon : shrineIcon}).addTo(map).bindPopup({{ location.1 }} * -1 + ', ' + {{ location.0 }});
+	  {% if location.orbs != 4 %}
+	  	L.marker([{{ location.lat }}, {{ location.long }}], {icon : shrineIcon})
+	  	    .addTo(map).bindPopup("<b>{{ location.name }} Shrine </b> {% if location.quest != None %}<br/>{{location.quest}}{% endif %}");
+  	  {% endif %}
 	{% endfor %}
 	
-	L.marker([2132, 428], {icon : masterSwordIcon}).addTo(map).bindPopup('Master Sword!');
 </script>
 </body>
 </html>

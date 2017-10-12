@@ -37,7 +37,7 @@ def run(request):
     if route==None:
         return HttpResponseBadRequest('Not enough orbs to finish a run!')
     params=settings.to_display_dict()
-    params.update({'run': route, 'setting_str':setting_str})
+    params.update({'run': route, 'setting_str':setting_str, 'seed':seed})
     return render(request, 'run.html', params)
 
 def settings(request):
@@ -82,7 +82,17 @@ def map(request):
     route=Chooser(seed, settings).get_route()
     if route==None:
         return HttpResponseBadRequest('Not enough orbs to finish a run!')
-    #Render shrines into javascriptarray
-    #shinesarray=[{'name':shrine.name, 'type':shrine.orbs==4} for shrine in route]
-    locs=hidden_shrines+open_shrines
-    return render(request, 'map.html', {'locations':locs})
+    #Test for the divine beasts:
+    naboris_chosen=False
+    medoh_chosen=False
+    ruta_chosen=False
+    rudania_chosen=False
+    for shrine in route:
+        if shrine.orbs == 4:
+            if shrine.name == "Vah Medoh": medoh_chosen=True
+            if shrine.name == "Vah Naboris": naboris_chosen=True
+            if shrine.name == "Vah Ruta": ruta_chosen=True
+            if shrine.name == "Vah Rudania": rudania_chosen=True
+            
+    return render(request, 'map.html', {'locations':route, 'naboris_chosen':naboris_chosen, 'medoh_chosen':medoh_chosen,
+                                        'ruta_chosen':ruta_chosen,'rudania_chosen':rudania_chosen})

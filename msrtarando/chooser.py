@@ -15,7 +15,7 @@ class Chooser:
         grouped_choosen=defaultdict(list)
         for chos in choosen: grouped_choosen['Divine Beast'].append(chos) if chos.orbs==4 else grouped_choosen[chos.region].append(chos)
         #Add the heros sword
-        grouped_choosen['Woodland'].append(BeastShrine(-1, "The Hero's Sword", 4, "Woodland"))
+        grouped_choosen['Woodland'].append(BeastShrine(-1, "The Hero's Sword", 4, "Woodland", 0, 0))
         grouped_choosen=sorted(grouped_choosen.items(),key=lambda kv: '0' if kv[0]=='Divine Beast' else kv[0])
         return grouped_choosen
     

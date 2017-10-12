@@ -8,6 +8,9 @@
 <body>
 <div id="settings"><table>
 <tr>
+<td class="first">Seed:</td><td class="second">{{seed}}</td>
+</tr>
+<tr>
 <td class="first">Selected Regions:</td><td class="second">{{regions}}</td>
 </tr>
 <tr>
@@ -30,6 +33,7 @@
 </tr>
 </table></div>
 <div id="runlinks">
+<a href="/map?seed={{seed}}&settings={{setting_str}}" target="_blank">Open Map</a><br/>
 <a href="/settings">Generate new Run</a><br/>
 <a href="/run?settings={{setting_str}}">Generate new Run with same settings</a></div>
 <div class="regions">

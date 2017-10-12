@@ -2,24 +2,26 @@ class BeastShrine:
     """
     Superclass for both beasts and shrines
     """
-    def __init__(self, id, name, orbs, region):
+    def __init__(self, id, name, orbs, region, lat, long):
         self.id=id
         self.name=name
         self.orbs=orbs
         self.region=region
+        self.lat=lat
+        self.long=long
     
     
 class Beast(BeastShrine):
-    def __init__(self, id, name, region):
-        super().__init__(id, name, 4, region)
+    def __init__(self, id, name, region, lat, long):
+        super().__init__(id, name, 4, region, lat, long)
         
     def __repr__(self):
         return 'Beast(id={}, name={!r}, region={!r})'\
             .format(self.id, self.name, self.region)
 
 class Shrine(BeastShrine):
-    def __init__(self, id, name, trial, quest, blessing, tos, beast, region):
-        super().__init__(id, name, 1, region)
+    def __init__(self, id, name, trial, quest, blessing, tos, beast, region, lat, long):
+        super().__init__(id, name, 1, region, lat, long)
         self.trial=trial
         self.quest=quest
         self.blessing=blessing
@@ -34,22 +36,30 @@ beasts=[
 Beast(
     id=0,
     name='Vah Medoh',
-    region='Tabantha'
+    region='Tabantha',
+    lat=1864,
+    long=-3614,
 ),
 Beast(
     id=1,
     name='Vah Naboris',
-    region='Wasteland'
+    region='Wasteland',
+    lat=-2636,
+    long=-2110,
 ),
 Beast(
     id=2,
     name='Vah Ruta',
-    region='Lanayru'
+    region='Lanayru',
+    lat=-242,
+    long=2985,
 ),
 Beast(
     id=3,
     name='Vah Rudania',
-    region='Eldin'
+    region='Eldin',
+    lat=2491,
+    long=-2538,
 )
 ]
 
@@ -62,7 +72,9 @@ Shrine(
     blessing=False,
     tos='major',
     beast=None,
-    region='Akkala'
+    region='Akkala',
+    lat=2705,
+    long=3778,
 ),
 Shrine(
     id=1,
@@ -72,7 +84,9 @@ Shrine(
     blessing=False,
     tos='minor',
     beast=None,
-    region='Akkala'
+    region='Akkala',
+    lat=1303,
+    long=3900,
 ),
 Shrine(
     id=2,
@@ -82,7 +96,9 @@ Shrine(
     blessing=False,
     tos='modest',
     beast=None,
-    region='Akkala'
+    region='Akkala',
+    lat=857,
+    long=4194,
 ),
 Shrine(
     id=3,
@@ -92,7 +108,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Akkala'
+    region='Akkala',
+    lat=2730,
+    long=4296,
 ),
 Shrine(
     id=4,
@@ -102,7 +120,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Akkala'
+    region='Akkala',
+    lat=2128,
+    long=4525,
 ),
 Shrine(
     id=5,
@@ -112,7 +132,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Akkala'
+    region='Akkala',
+    lat=3710,
+    long=4655,
 ),
 Shrine(
     id=6,
@@ -122,7 +144,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Akkala'
+    region='Akkala',
+    lat=1668,
+    long=3027,
 ),
 Shrine(
     id=7,
@@ -132,7 +156,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Akkala'
+    region='Akkala',
+    lat=3420,
+    long=3324,
 ),
 Shrine(
     id=8,
@@ -142,7 +168,9 @@ Shrine(
     blessing=False,
     tos='major',
     beast=None,
-    region='Central'
+    region='Central',
+    lat=1159,
+    long=-147,
 ),
 Shrine(
     id=9,
@@ -152,7 +180,9 @@ Shrine(
     blessing=False,
     tos='minor',
     beast=None,
-    region='Central'
+    region='Central',
+    lat=345,
+    long=-636,
 ),
 Shrine(
     id=10,
@@ -162,7 +192,9 @@ Shrine(
     blessing=False,
     tos='minor',
     beast=None,
-    region='Central'
+    region='Central',
+    lat=624,
+    long=-951,
 ),
 Shrine(
     id=11,
@@ -172,7 +204,9 @@ Shrine(
     blessing=False,
     tos='modest',
     beast=None,
-    region='Central'
+    region='Central',
+    lat=821,
+    long=761,
 ),
 Shrine(
     id=12,
@@ -182,7 +216,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Central'
+    region='Central',
+    lat=-1007,
+    long=345,
 ),
 Shrine(
     id=13,
@@ -192,7 +228,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Central'
+    region='Central',
+    lat=-1310,
+    long=-1563,
 ),
 Shrine(
     id=14,
@@ -202,7 +240,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Central'
+    region='Central',
+    lat=-188,
+    long=824,
 ),
 Shrine(
     id=15,
@@ -212,7 +252,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Central'
+    region='Central',
+    lat=-716,
+    long=-968,
 ),
 Shrine(
     id=16,
@@ -222,7 +264,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Dueling Peaks'
+    region='Dueling Peaks',
+    lat=-838,
+    long=855,
 ),
 Shrine(
     id=17,
@@ -232,7 +276,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Dueling Peaks'
+    region='Dueling Peaks',
+    lat=-972,
+    long=2040,
 ),
 Shrine(
     id=18,
@@ -242,7 +288,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Dueling Peaks'
+    region='Dueling Peaks',
+    lat=-890,
+    long=1842,
 ),
 Shrine(
     id=19,
@@ -252,7 +300,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Dueling Peaks'
+    region='Dueling Peaks',
+    lat=-188,
+    long=824,
 ),
 Shrine(
     id=20,
@@ -262,7 +312,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Dueling Peaks'
+    region='Dueling Peaks',
+    lat=-1659,
+    long=87,
 ),
 Shrine(
     id=21,
@@ -272,7 +324,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Dueling Peaks'
+    region='Dueling Peaks',
+    lat=-1844,
+    long=1272,
 ),
 Shrine(
     id=22,
@@ -282,7 +336,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Dueling Peaks'
+    region='Dueling Peaks',
+    lat=-2474,
+    long=1846,
 ),
 Shrine(
     id=23,
@@ -292,7 +348,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Dueling Peaks'
+    region='Dueling Peaks',
+    lat=-1938,
+    long=1265,
 ),
 Shrine(
     id=24,
@@ -302,7 +360,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Dueling Peaks'
+    region='Dueling Peaks',
+    lat=-1850,
+    long=1244,
 ),
 Shrine(
     id=25,
@@ -312,7 +372,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Eldin'
+    region='Eldin',
+    lat=1517,
+    long=1821,
 ),
 Shrine(
     id=26,
@@ -322,7 +384,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Eldin'
+    region='Eldin',
+    lat=3118,
+    long=1535,
 ),
 Shrine(
     id=27,
@@ -332,7 +396,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Eldin'
+    region='Eldin',
+    lat=3457,
+    long=2662,
 ),
 Shrine(
     id=28,
@@ -342,7 +408,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Eldin'
+    region='Eldin',
+    lat=2040,
+    long=2077,
 ),
 Shrine(
     id=29,
@@ -352,7 +420,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Eldin'
+    region='Eldin',
+    lat=1166,
+    long=2724,
 ),
 Shrine(
     id=30,
@@ -362,7 +432,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Eldin'
+    region='Eldin',
+    lat=941,
+    long=2301,
 ),
 Shrine(
     id=31,
@@ -372,7 +444,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Eldin'
+    region='Eldin',
+    lat=1581,
+    long=2665,
 ),
 Shrine(
     id=32,
@@ -382,7 +456,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Eldin'
+    region='Eldin',
+    lat=2328,
+    long=2066,
 ),
 Shrine(
     id=33,
@@ -392,7 +468,9 @@ Shrine(
     blessing=False,
     tos=False,
     beast=False,
-    region='Eldin'
+    region='Eldin',
+    lat=2562,
+    long=1757,
 ),
 Shrine(
     id=34,
@@ -402,7 +480,9 @@ Shrine(
     blessing=False,
     tos='modest',
     beast=None,
-    region='Faron'
+    region='Faron',
+    lat=-3308,
+    long=3658,
 ),
 Shrine(
     id=35,
@@ -412,7 +492,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Faron'
+    region='Faron',
+    lat=-3311,
+    long=2833,
 ),
 Shrine(
     id=36,
@@ -422,7 +504,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Faron'
+    region='Faron',
+    lat=-3772,
+    long=4737,
 ),
 Shrine(
     id=37,
@@ -432,7 +516,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Faron'
+    region='Faron',
+    lat=-3615,
+    long=1587,
 ),
 Shrine(
     id=38,
@@ -442,7 +528,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Faron'
+    region='Faron',
+    lat=-2992,
+    long=1790,
 ),
 Shrine(
     id=39,
@@ -452,7 +540,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Faron'
+    region='Faron',
+    lat=-3316,
+    long=3437,
 ),
 Shrine(
     id=40,
@@ -462,7 +552,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Faron'
+    region='Faron',
+    lat=-3285,
+    long=2007,
 ),
 Shrine(
     id=41,
@@ -472,7 +564,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Faron'
+    region='Faron',
+    lat=-2834,
+    long=2638,
 ),
 Shrine(
     id=42,
@@ -482,7 +576,9 @@ Shrine(
     blessing=False,
     tos='major',
     beast=None,
-    region='Gerudo'
+    region='Gerudo',
+    lat=-905,
+    long=-4658,
 ),
 Shrine(
     id=43,
@@ -492,7 +588,9 @@ Shrine(
     blessing=False,
     tos='minor',
     beast=None,
-    region='Gerudo'
+    region='Gerudo',
+    lat=-1700,
+    long=-1695,
 ),
 Shrine(
     id=44,
@@ -502,7 +600,9 @@ Shrine(
     blessing=False,
     tos='modest',
     beast=None,
-    region='Gerudo'
+    region='Gerudo',
+    lat=-1953,
+    long=-3560,
 ),
 Shrine(
     id=45,
@@ -512,7 +612,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Gerudo'
+    region='Gerudo',
+    lat=-1674,
+    long=-2004,
 ),
 Shrine(
     id=46,
@@ -522,7 +624,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Gerudo'
+    region='Gerudo',
+    lat=-717,
+    long=-3853,
 ),
 Shrine(
     id=47,
@@ -532,7 +636,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Gerudo'
+    region='Gerudo',
+    lat=-1221,
+    long=-3083,
 ),
 Shrine(
     id=48,
@@ -542,7 +648,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Gerudo'
+    region='Gerudo',
+    lat=-1654,
+    long=-3911,
 ),
 Shrine(
     id=49,
@@ -552,7 +660,9 @@ Shrine(
     blessing=False,
     tos='major',
     beast=None,
-    region='Hateno'
+    region='Hateno',
+    lat=-2991,
+    long=4012,
 ),
 Shrine(
     id=50,
@@ -562,7 +672,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hateno'
+    region='Hateno',
+    lat=-378,
+    long=2622,
 ),
 Shrine(
     id=51,
@@ -572,7 +684,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Hateno'
+    region='Hateno',
+    lat=-1315,
+    long=3882,
 ),
 Shrine(
     id=52,
@@ -582,7 +696,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hateno'
+    region='Hateno',
+    lat=-2216,
+    long=3388,
 ),
 Shrine(
     id=53,
@@ -592,7 +708,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Hateno'
+    region='Hateno',
+    lat=-1687,
+    long=4182,
 ),
 Shrine(
     id=54,
@@ -602,7 +720,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hateno'
+    region='Hateno',
+    lat=-1333,
+    long=2698,
 ),
 Shrine(
     id=55,
@@ -612,7 +732,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hateno'
+    region='Hateno',
+    lat=-1495,
+    long=2501,
 ),
 Shrine(
     id=56,
@@ -622,7 +744,9 @@ Shrine(
     blessing=False,
     tos='major',
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=2882,
+    long=-2792,
 ),
 Shrine(
     id=57,
@@ -632,7 +756,9 @@ Shrine(
     blessing=False,
     tos='major',
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=3803,
+    long=-4447,
 ),
 Shrine(
     id=58,
@@ -642,7 +768,9 @@ Shrine(
     blessing=False,
     tos='major',
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=3038,
+    long=-3628,
 ),
 Shrine(
     id=59,
@@ -652,7 +780,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=1578,
+    long=-2832,
 ),
 Shrine(
     id=60,
@@ -662,7 +792,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=2554,
+    long=-1721,
 ),
 Shrine(
     id=61,
@@ -672,7 +804,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=2060,
+    long=-2636,
 ),
 Shrine(
     id=62,
@@ -682,7 +816,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=3225,
+    long=-2378,
 ),
 Shrine(
     id=63,
@@ -692,7 +828,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=3535,
+    long=-821,
 ),
 Shrine(
     id=64,
@@ -702,7 +840,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=3222,
+    long=-2999,
 ),
 Shrine(
     id=65,
@@ -712,7 +852,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=3758,
+    long=-1673,
 ),
 Shrine(
     id=66,
@@ -722,7 +864,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=2508,
+    long=-4058,
 ),
 Shrine(
     id=67,
@@ -732,7 +876,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=2255,
+    long=-2380,
 ),
 Shrine(
     id=68,
@@ -742,7 +888,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Hebra'
+    region='Hebra',
+    lat=3712,
+    long=-4023,
 ),
 Shrine(
     id=69,
@@ -752,7 +900,9 @@ Shrine(
     blessing=False,
     tos='minor',
     beast=None,
-    region='Lake'
+    region='Lake',
+    lat=-2990,
+    long=559,
 ),
 Shrine(
     id=70,
@@ -762,7 +912,9 @@ Shrine(
     blessing=False,
     tos='modest',
     beast=None,
-    region='Lake'
+    region='Lake',
+    lat=-3842,
+    long=94,
 ),
 Shrine(
     id=71,
@@ -772,7 +924,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Lake'
+    region='Lake',
+    lat=-3565,
+    long=-985,
 ),
 Shrine(
     id=72,
@@ -782,7 +936,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Lake'
+    region='Lake',
+    lat=-3526,
+    long=523,
 ),
 Shrine(
     id=73,
@@ -792,7 +948,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Lake'
+    region='Lake',
+    lat=-2329,
+    long=870,
 ),
 Shrine(
     id=74,
@@ -802,7 +960,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Lake'
+    region='Lake',
+    lat=-2600,
+    long=-328,
 ),
 Shrine(
     id=75,
@@ -812,7 +972,9 @@ Shrine(
     blessing=False,
     tos='minor',
     beast=None,
-    region='Lanayru'
+    region='Lanayru',
+    lat=293,
+    long=2238,
 ),
 Shrine(
     id=76,
@@ -822,7 +984,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Lanayru'
+    region='Lanayru',
+    lat=417,
+    long=3150,
 ),
 Shrine(
     id=77,
@@ -832,7 +996,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Lanayru'
+    region='Lanayru',
+    lat=1310,
+    long=4709,
 ),
 Shrine(
     id=78,
@@ -842,7 +1008,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Lanayru'
+    region='Lanayru',
+    lat=-402,
+    long=3334,
 ),
 Shrine(
     id=79,
@@ -852,7 +1020,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Lanayru'
+    region='Lanayru',
+    lat=519,
+    long=3324,
 ),
 Shrine(
     id=80,
@@ -862,7 +1032,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Lanayru'
+    region='Lanayru',
+    lat=-253,
+    long=4246,
 ),
 Shrine(
     id=81,
@@ -872,7 +1044,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Lanayru'
+    region='Lanayru',
+    lat=377,
+    long=1510,
 ),
 Shrine(
     id=82,
@@ -882,7 +1056,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Lanayru'
+    region='Lanayru',
+    lat=-462,
+    long=1601,
 ),
 Shrine(
     id=83,
@@ -892,7 +1068,9 @@ Shrine(
     blessing=False,
     tos='modest',
     beast=None,
-    region='Ridgeland'
+    region='Ridgeland',
+    lat=-226,
+    long=-2734,
 ),
 Shrine(
     id=84,
@@ -902,7 +1080,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Ridgeland'
+    region='Ridgeland',
+    lat=432,
+    long=-2931,
 ),
 Shrine(
     id=85,
@@ -912,7 +1092,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Ridgeland'
+    region='Ridgeland',
+    lat=900,
+    long=-2269,
 ),
 Shrine(
     id=86,
@@ -922,7 +1104,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Ridgeland'
+    region='Ridgeland',
+    lat=1458,
+    long=-1940,
 ),
 Shrine(
     id=87,
@@ -932,7 +1116,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Ridgeland'
+    region='Ridgeland',
+    lat=-92,
+    long=-1893,
 ),
 Shrine(
     id=88,
@@ -942,7 +1128,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Ridgeland'
+    region='Ridgeland',
+    lat=-461,
+    long=-2297,
 ),
 Shrine(
     id=89,
@@ -952,7 +1140,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Ridgeland'
+    region='Ridgeland',
+    lat=594,
+    long=-1432,
 ),
 Shrine(
     id=90,
@@ -962,7 +1152,9 @@ Shrine(
     blessing=False,
     tos='major',
     beast=None,
-    region='Tabantha'
+    region='Tabantha',
+    lat=448,
+    long=-3465,
 ),
 Shrine(
     id=91,
@@ -972,7 +1164,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Tabantha'
+    region='Tabantha',
+    lat=1515,
+    long=-3609,
 ),
 Shrine(
     id=92,
@@ -982,7 +1176,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Tabantha'
+    region='Tabantha',
+    lat=1722,
+    long=-4016,
 ),
 Shrine(
     id=93,
@@ -992,7 +1188,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast='medoh',
-    region='Tabantha'
+    region='Tabantha',
+    lat=2206,
+    long=-3823,
 ),
 Shrine(
     id=94,
@@ -1002,7 +1200,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Tabantha'
+    region='Tabantha',
+    lat=414,
+    long=-4120,
 ),
 Shrine(
     id=95,
@@ -1012,7 +1212,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Tabantha'
+    region='Tabantha',
+    lat=1757,
+    long=-3656,
 ),
 Shrine(
     id=96,
@@ -1022,7 +1224,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-1968,
+    long=-4674,
 ),
 Shrine(
     id=97,
@@ -1032,7 +1236,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-3465,
+    long=-1795,
 ),
 Shrine(
     id=98,
@@ -1042,7 +1248,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-2162,
+    long=-3318,
 ),
 Shrine(
     id=99,
@@ -1052,7 +1260,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-2811,
+    long=-2689,
 ),
 Shrine(
     id=100,
@@ -1062,7 +1272,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-3782,
+    long=-2970,
 ),
 Shrine(
     id=101,
@@ -1072,7 +1284,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-2423,
+    long=-1793,
 ),
 Shrine(
     id=102,
@@ -1082,7 +1296,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-2300,
+    long=-2810,
 ),
 Shrine(
     id=103,
@@ -1092,7 +1308,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast='naboris',
-    region='Wasteland'
+    region='Wasteland',
+    lat=-3127,
+    long=-3811,
 ),
 Shrine(
     id=104,
@@ -1102,7 +1320,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-3448,
+    long=-1418,
 ),
 Shrine(
     id=105,
@@ -1112,7 +1332,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-3773,
+    long=-4847,
 ),
 Shrine(
     id=106,
@@ -1122,7 +1344,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-2820,
+    long=-3817,
 ),
 Shrine(
     id=107,
@@ -1132,7 +1356,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Wasteland'
+    region='Wasteland',
+    lat=-2800,
+    long=-4799,
 ),
 Shrine(
     id=108,
@@ -1142,7 +1368,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Woodland'
+    region='Woodland',
+    lat=2459,
+    long=-26,
 ),
 Shrine(
     id=109,
@@ -1152,7 +1380,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Woodland'
+    region='Woodland',
+    lat=1473,
+    long=-1489,
 ),
 Shrine(
     id=110,
@@ -1162,7 +1392,9 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Woodland'
+    region='Woodland',
+    lat=2169,
+    long=471,
 ),
 Shrine(
     id=111,
@@ -1172,7 +1404,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Woodland'
+    region='Woodland',
+    lat=3120,
+    long=283,
 ),
 Shrine(
     id=112,
@@ -1182,7 +1416,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Woodland'
+    region='Woodland',
+    lat=1944,
+    long=18,
 ),
 Shrine(
     id=113,
@@ -1192,7 +1428,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Woodland'
+    region='Woodland',
+    lat=2420,
+    long=837,
 ),
 Shrine(
     id=114,
@@ -1202,7 +1440,9 @@ Shrine(
     blessing=True,
     tos=None,
     beast=None,
-    region='Woodland'
+    region='Woodland',
+    lat=2662,
+    long=-1088,
 ),
 Shrine(
     id=115,
@@ -1212,6 +1452,8 @@ Shrine(
     blessing=False,
     tos=None,
     beast=None,
-    region='Woodland'
+    region='Woodland',
+    lat=1213,
+    long=1232,
 )
 ]
