@@ -4,6 +4,7 @@ from django.http.response import HttpResponseRedirect, HttpResponseBadRequest
 import random
 from .chooser import Settings, Chooser
 from .forms import SettingsForm
+from .locations import hidden_shrines, open_shrines
 
 REGION_CONVERTION_FIELD=['akkala', 'central', 'dueling_peaks', 'eldin', 'faron', 'gerudo', 'hateno', 'hebra', 'lake', 'lanayru', 'ridgeland', 'tabantha', 'wasteland', 'woodland']
 REGION_CONVERTION_SETTINGS=['Akkala', 'Central', 'Dueling Peaks', 'Eldin', 'Faron', 'Gerudo', 'Hateno', 'Hebra', 'Lake', 'Lanayru', 'Ridgeland', 'Tabantha', 'Wasteland', 'Woodland']
@@ -32,7 +33,7 @@ def run(request):
             error=True
     if error:
         return HttpResponseRedirect('run?seed={}&settings={}'.format(seed,settings.to_setting_str()))
-    route=Chooser(seed, settings).get_route()
+    route=Chooser(seed, settings).get_grouped_route()
     if route==None:
         return HttpResponseBadRequest('Not enough orbs to finish a run!')
     params=settings.to_display_dict()
@@ -61,3 +62,27 @@ def settings(request):
 
 def index(request):
     return HttpResponseRedirect('settings')
+
+def map(request):
+    setting_str=request.GET.get('settings',None)
+    seed=request.GET.get('seed',-1)
+    try:
+        seed=int(seed)
+    except ValueError:
+        return HttpResponseBadRequest("Bad seed given (not a number)")
+    if seed<0:
+        return HttpResponseBadRequest("Bad seed given (below 0)")
+    if setting_str==None:
+        return HttpResponseBadRequest("No settings given")
+    else:
+        try:
+            settings=Settings.from_setting_str(setting_str)
+        except:
+            return HttpResponseBadRequest("Bad settings")
+    route=Chooser(seed, settings).get_route()
+    if route==None:
+        return HttpResponseBadRequest('Not enough orbs to finish a run!')
+    #Render shrines into javascriptarray
+    #shinesarray=[{'name':shrine.name, 'type':shrine.orbs==4} for shrine in route]
+    locs=hidden_shrines+open_shrines
+    return render(request, 'map.html', {'locations':locs})

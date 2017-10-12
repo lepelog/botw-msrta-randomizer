@@ -8,7 +8,17 @@ class Chooser:
     def __init__(self,seed,settings):
         self.seed=seed
         self.settings=settings
-        
+    
+    def get_grouped_route(self):
+        choosen=self.get_route()
+        #Group by region
+        grouped_choosen=defaultdict(list)
+        for chos in choosen: grouped_choosen['Divine Beast'].append(chos) if chos.orbs==4 else grouped_choosen[chos.region].append(chos)
+        #Add the heros sword
+        grouped_choosen['Woodland'].append(BeastShrine(-1, "The Hero's Sword", 4, "Woodland"))
+        grouped_choosen=sorted(grouped_choosen.items(),key=lambda kv: '0' if kv[0]=='Divine Beast' else kv[0])
+        return grouped_choosen
+    
     def get_route(self):
         """
         Returns a route for the seed and the settings
@@ -117,15 +127,7 @@ class Chooser:
             
             if orbcount==36:
                 break
-                        
-        
-        #Group by region
-        grouped_choosen=defaultdict(list)
-        for chos in choosen: grouped_choosen['Divine Beast'].append(chos) if chos.orbs==4 else grouped_choosen[chos.region].append(chos)
-        #Add the heros sword
-        grouped_choosen['Woodland'].append(BeastShrine(-1, "The Hero's Sword", 4, "Woodland"))
-        grouped_choosen=sorted(grouped_choosen.items(),key=lambda kv: '0' if kv[0]=='Divine Beast' else kv[0])
-        return grouped_choosen
+        return choosen
 
 class Settings:
     all_regions=['Dueling Peaks', 'Gerudo', 'Hebra', 'Lake', 'Woodland', 'Ridgeland', 'Tabantha', 'Hateno', 'Eldin', 'Akkala', 'Central', 'Lanayru', 'Faron', 'Wasteland']
