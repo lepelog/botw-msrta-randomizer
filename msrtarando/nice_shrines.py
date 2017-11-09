@@ -1177,8 +1177,8 @@ Shrine(
     tos=None,
     beast=None,
     region='Tabantha',
-    lat=1722,
-    long=-4016,
+    lat=2206,
+    long=-3823,
 ),
 Shrine(
     id=93,
@@ -1189,8 +1189,8 @@ Shrine(
     tos=None,
     beast='medoh',
     region='Tabantha',
-    lat=2206,
-    long=-3823,
+    lat=1722,
+    long=-4016,
 ),
 Shrine(
     id=94,
