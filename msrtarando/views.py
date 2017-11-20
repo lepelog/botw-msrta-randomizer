@@ -36,7 +36,9 @@ def run(request):
     if route==None:
         return HttpResponseBadRequest('Not enough orbs to finish a run!')
     params=settings.to_display_dict()
-    params.update({'run': route, 'setting_str':setting_str, 'seed':seed})
+    #used for the next run
+    newseed=random.getrandbits(32)
+    params.update({'run': route, 'setting_str':setting_str, 'seed':seed, 'newseed':newseed})
     return render(request, 'run.html', params)
 
 def settings(request):
