@@ -21,6 +21,7 @@ urlpatterns = [
 #    url(r'^admin/', admin.site.urls),
     url(r'^run$',msrtarandoviews.run),
     url(r'^map$',msrtarandoviews.map),
+    url(r'^card$',msrtarandoviews.card),
     url(r'^settings$',msrtarandoviews.settings),
     url(r'^$',msrtarandoviews.index),
 ]

@@ -137,3 +137,28 @@ fieldset {
 .color-blue {
   background: rgba(0,0,200,0.5);
 }
+
+/* stuff for the card*/
+#card-table {
+  border-collapse: collapse;
+}
+
+#card-table td {
+  border: 1px solid white;
+  padding: 5px;
+}
+
+.card-quest {
+  font-family: Sans;
+  font-style: italic;
+}
+
+.card-trial {
+  font-family: Sans;
+  font-size: 110%;
+}
+
+.card-name {
+  font-family: Hylia Serif;
+  font-size: 30px;
+}

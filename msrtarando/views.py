@@ -7,39 +7,86 @@ from .forms import SettingsForm
 
 REGION_CONVERTION_FIELD=['akkala', 'central', 'dueling_peaks', 'eldin', 'faron', 'gerudo', 'hateno', 'hebra', 'lake', 'lanayru', 'ridgeland', 'tabantha', 'wasteland', 'woodland']
 REGION_CONVERTION_SETTINGS=['Akkala', 'Central', 'Dueling Peaks', 'Eldin', 'Faron', 'Gerudo', 'Hateno', 'Hebra', 'Lake', 'Lanayru', 'Ridgeland', 'Tabantha', 'Wasteland', 'Woodland']
-
-# Create your views here.
-def run(request):
+# helper
+def get_chooser_or_response(request, strict=False):
+    """
+    get the route and fills illegal params with defaults if strict is false, otherwise
+    fails with status codes. Only if all params were correct a Chooser-object is returned
+    Returns:
+        Chooser or HttpResponse subclass
+    """
     setting_str=request.GET.get('settings',None)
     seed=request.GET.get('seed',-1)
-    error=False
+    error = False
     try:
         seed=int(seed)
     except ValueError:
-        error=True
-        seed=random.getrandbits(32)
+        if strict:
+            return HttpResponseBadRequest("Bad seed given (not a number)")
+        else:
+            error=True
+            seed=random.getrandbits(32)
     if seed<0:
-        error=True
-        seed=random.getrandbits(32)
+        if strict:
+            return HttpResponseBadRequest("Bad seed given (below 0)")
+        else:
+            error=True
+            seed=random.getrandbits(32)
     if setting_str==None:
-        error=True
-        settings=Settings()
+        if strict:
+            return HttpResponseBadRequest("No settings given")
+        else:
+            error=True
+            settings=Settings()
     else:
         try:
             settings=Settings.from_setting_str(setting_str)
         except:
-            settings=Settings()
-            error=True
+            if strict:
+                return HttpResponseBadRequest("Bad settings")
+            else:
+                settings=Settings()
+                error=True
     if error:
         return HttpResponseRedirect('run?seed={}&settings={}'.format(seed,settings.to_setting_str()))
-    route=Chooser(seed, settings).get_grouped_route()
+    return Chooser(seed, settings)
+
+# Create your views here.
+def run(request):
+    resp = get_chooser_or_response(request)
+    if type(resp) == Chooser:
+        route=resp.get_grouped_route()
+    else:
+        return resp
     if route==None:
         return HttpResponseBadRequest('Not enough orbs to finish a run!')
-    params=settings.to_display_dict()
+    params = resp.settings.to_display_dict()
     #used for the next run
-    newseed=random.getrandbits(32)
-    params.update({'run': route, 'setting_str':setting_str, 'seed':seed, 'newseed':newseed})
+    newseed = random.getrandbits(32)
+    params.update({'run': route, 'setting_str':resp.settings.to_setting_str(), 'seed':resp.seed, 'newseed':newseed})
     return render(request, 'run.html', params)
+
+def card(request):
+    resp = get_chooser_or_response(request, strict=True)
+    if type(resp) == Chooser:
+        route=resp.get_route()
+    else:
+        return resp
+    if route==None:
+        return HttpResponseBadRequest('Not enough orbs to finish a run!')
+    
+    route = sorted(route, key=
+        lambda beast_shrine: ('0' if beast_shrine.orbs == 4 else beast_shrine.region) + beast_shrine.name)
+    table_run = list()
+    i = 0
+    while i < len(route):
+        if (i % 3) == 0:
+            curr_row = list()
+            table_run.append(curr_row)
+        curr_row.append(route[i])
+        i+=1
+    return render(request, 'card.html', {'run':table_run})
+
 
 def settings(request):
     if request.method == 'POST':
@@ -65,22 +112,14 @@ def index(request):
     return HttpResponseRedirect('settings')
 
 def map(request):
-    setting_str=request.GET.get('settings',None)
-    seed=request.GET.get('seed',-1)
-    try:
-        seed=int(seed)
-    except ValueError:
-        return HttpResponseBadRequest("Bad seed given (not a number)")
-    if seed<0:
-        return HttpResponseBadRequest("Bad seed given (below 0)")
-    if setting_str==None:
-        return HttpResponseBadRequest("No settings given")
+    resp = get_chooser_or_response(request, strict=True)
+    if type(resp) == Chooser:
+        route=resp.get_route()
     else:
-        try:
-            settings=Settings.from_setting_str(setting_str)
-        except:
-            return HttpResponseBadRequest("Bad settings")
-    route=Chooser(seed, settings).get_route()
+        return resp
+    if route==None:
+        return HttpResponseBadRequest('Not enough orbs to finish a run!')
+    
     if route==None:
         return HttpResponseBadRequest('Not enough orbs to finish a run!')
     #Test for the divine beasts:
