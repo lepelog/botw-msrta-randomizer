@@ -87,16 +87,16 @@ class Chooser:
         while True:
             while orbcount<36:
                 if orbcount<=32:
-                    num=self.rand.randrange(0, len(beasts_remaining)*4+len(shrines_remaining))
-                    if num<len(beasts_remaining)*4:
+                    num=self.rand.randrange(0, len(beasts_remaining)*2+len(shrines_remaining))
+                    if num<len(beasts_remaining)*2:
                         #divine beast selected
-                        selected=beasts_remaining[num//4]
+                        selected=beasts_remaining[num//2]
                         choosen.append(selected)
                         beasts_remaining.remove(selected)
                         orbcount+=4
                     else:
                         #shrine selected
-                        selected=shrines_remaining[num-len(beasts_remaining)*4]
+                        selected=shrines_remaining[num-len(beasts_remaining)*2]
                         choosen.append(selected)
                         shrines_remaining.remove(selected)
                         orbcount+=1
