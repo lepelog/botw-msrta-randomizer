@@ -35,7 +35,7 @@
 	var southWest = map.unproject([-6000, 5000], 0);
 	var northEast = map.unproject([6000, -5000], 0);
 	var bounds = new L.LatLngBounds(southWest, northEast);
-	L.imageOverlay("{% static 'BotW-Map.png' %}", bounds).addTo(map);
+	L.imageOverlay("{% static 'BotW-Map-min.png' %}", bounds).addTo(map);
 	map.setMaxBounds(bounds);
 	
 	{# load icons #}
