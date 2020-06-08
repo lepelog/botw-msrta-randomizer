@@ -1,2 +1,2 @@
-Django==1.11.28
+Django==1.11.29
 django-form-utils==1.0.3
